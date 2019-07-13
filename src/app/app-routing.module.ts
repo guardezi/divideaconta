@@ -21,7 +21,11 @@ const routes: Routes = [
   },
   {
     path: 'cadastro',
-    loadChildren: './cadastro/cadastro.module#CadastroPageModule' 
+    loadChildren: './cadastro/cadastro.module#CadastroPageModule'
+  },
+  {
+    path: 'home/create',
+    loadChildren: './home/create/create.module#CreatePageModule'
   }
 ];
 
@@ -31,4 +35,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
