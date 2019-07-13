@@ -1,0 +1,70 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="content">
+
+
+  <ion-row style="padding-top: 5rem; font-size: 2em;">
+    <ion-col text-center>
+      <ion-img src="./assets/bill_gates.jpg" style="background-color: rgb(122, 224, 122); width: 90%; margin: auto;">
+      </ion-img>
+      Split the Bill
+    </ion-col>
+  </ion-row>
+
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <!-- Celular -->
+    <ion-row style="padding-top: 4rem;">
+      <ion-col>
+        <ion-item>
+          <ion-input maxlength="15" placeholder="Informe seu celular" type="tel" class="input-auth"
+            formControlName="cel" [brmasker]="{
+                mask: '(00) 00000-0000',
+                len: 15,
+                person: false
+              }"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- senha -->
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-input class="input-auth" type="password" placeholder="Informe a sua senha" formControlName="senha">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+
+        <ion-button color="light" size="small" fill="clear" type="submit" [disabled]="!loginForm.valid"
+          style="font-size: 1.2rem; border: 1px solid white;">
+          Entrar
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+  </form>
+
+
+  <ion-row>
+    <ion-col col-12 text-center>
+
+      <ion-button color="light" size="small" fill="clear" (click)="cadastro()"
+        style="font-size: 1rem;">
+        Cadastrar
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
