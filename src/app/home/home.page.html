@@ -16,10 +16,15 @@
       <ion-list-header>
         <ion-label>Eventos:</ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let event of (events | async)">
-        <ion-label>{{event.data}}</ion-label>
+      <ion-item *ngFor="let event of (userEvents | async)">
+          <ion-label>evento:</ion-label>
+        <ion-label>{{event.eventName}}</ion-label>
       </ion-item>
     </ion-list>
 
-    <ion-button positive (click)="addNewEvent()">adicionar</ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" routerLink="/home/create" routerDirection="forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

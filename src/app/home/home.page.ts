@@ -10,12 +10,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  private eventCollection: AngularFirestoreCollection<any>;
+  private userEventCollection: AngularFirestoreCollection<any>;
   private events: Observable<any[]>;
+  private userEvents: Observable<any[]>;
+
+  private userId = '5511957925512';
+
   constructor(
     private afs: AngularFirestore) {
-    this.eventCollection = this.afs.collection<any>('users/5511957925512/events/');
-    this.events = this.eventCollection.snapshotChanges().pipe(
+    this.userEventCollection = this.afs.collection<any>(`users/${this.userId}/events/`);
+    this.userEvents = this.userEventCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -26,8 +30,5 @@ export class HomePage {
     );
   }
 
-  addNewEvent(){
-    this.eventCollection.add({data: new Date()});
-    console.log('add new event');
-  }
+
 }
