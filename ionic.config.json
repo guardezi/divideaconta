@@ -1,0 +1,7 @@
+{
+  "name": "divideaconta",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
