@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginPage implements OnInit {
   public loginForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.prepareForm();
   }
@@ -33,9 +35,12 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    if (this.loginForm.valid) {
       console.log('eureca');
-    }
   }
+
+  cadastro() {
+    this.router.navigate(['cadastro']);
+  }
+
 
 }
