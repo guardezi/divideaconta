@@ -14,14 +14,31 @@
       <ion-input type="text" formControlName="eventName"></ion-input>
     </ion-item>
     <div class="validation-errors">
-        <ng-container *ngFor="let validation of validationMessages.eventName">
-          <div class="error-message" *ngIf="eventForm.get('eventName').hasError(validation.type) && (eventForm.get('eventName').dirty || eventForm.get('eventName').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-      <ion-button type="submit" positive >adicionar</ion-button>
+      <ng-container *ngFor="let validation of validationMessages.eventName">
+        <div class="error-message"
+          *ngIf="eventForm.get('eventName').hasError(validation.type) && (eventForm.get('eventName').dirty || eventForm.get('eventName').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <p>amigos selecionados:</p>
+    <div>
+      <app-friend *ngFor="let friend of (selectedFriends)" [friend]="friend" (click)="removeFriendEvent(friend)">
+
+      </app-friend>
+    </div>
+
+
+    <ion-button type="submit" positive>adicionar</ion-button>
   </form>
 
-  
+
+
+  <div>
+    <app-friend *ngFor="let friend of (userList | async)" [friend]="friend" (click)="addFriendEvent(friend)">
+
+    </app-friend>
+  </div>
+
+
 </ion-content>

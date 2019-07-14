@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-create',
@@ -13,8 +14,12 @@ import { Observable } from 'rxjs';
 })
 export class CreatePage implements OnInit {
   private eventCollection: AngularFirestoreCollection<any>;
+  private userCollection: AngularFirestoreCollection<any>;
+  private userList: Observable<any[]>;
 
-  private userId = '5511957925512';
+  private selectedFriends: any[] = [];
+
+  private userId;
   private eventForm;
   validationMessages = {
     eventName: [
@@ -25,19 +30,44 @@ export class CreatePage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private afs: AngularFirestore) {
+    private afs: AngularFirestore,
+    private user: UserService) {
+    this.userId = this.user.loggedUser;
     this.eventCollection = this.afs.collection<any>('events');
+
+    this.userCollection = this.afs.collection<any>('users');
+    this.userList = this.userCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
     this.eventForm = this.formBuilder.group({
       eventName: new FormControl('', Validators.required)
     });
+
   }
 
   ngOnInit() {
   }
 
+  removeFriendEvent(friend) {
+    this.selectedFriends = this.selectedFriends.filter((f) => {
+      return f !== friend;
+    });
+  }
+
+  addFriendEvent(friend: any) {
+    if (this.selectedFriends.indexOf(friend) < 0) {
+      this.selectedFriends.push(friend);
+    }
+  }
+
   addNewEvent() {
     if (this.eventForm.valid) {
-      debugger;
       const data = this.eventForm.value;
       const evn = { open: true, data: new Date(), ...data };
       this.eventCollection.add(evn)

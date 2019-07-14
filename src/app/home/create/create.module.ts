@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CreatePage } from './create.page';
+import { FriendComponent } from 'src/app/component/friend/friend.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CreatePage]
+  declarations: [CreatePage, FriendComponent]
 })
-export class CreatePageModule {}
+export class CreatePageModule { }
