@@ -65,15 +65,9 @@ export class ShopPage implements OnInit {
           part: item.itemPrice * pricePerFriend,
           ...f
         });
-        console.log(`${shoppRef.path}/split/${f.id}`);
       });
 
 
-
-
-
-
-      console.log(this.selectedFriends, pricePerFriend);
     }
 
   }

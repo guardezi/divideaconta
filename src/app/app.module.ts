@@ -14,6 +14,7 @@ import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/fi
 import { firebase } from '../environments/environment';
 import { FriendComponent } from './component/friend/friend.component';
 import { FriendComponentModule } from './component/friend/friend.component.module';
+import { ShopComponentModule } from './components/shops/shops.component.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { FriendComponentModule } from './component/friend/friend.component.modul
     AppRoutingModule,
     AngularFireModule.initializeApp(firebase),
     AngularFirestoreModule,
-    FriendComponentModule
+    FriendComponentModule,
+    ShopComponentModule
   ],
   providers: [
     StatusBar,

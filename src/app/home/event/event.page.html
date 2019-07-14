@@ -21,5 +21,7 @@
       <ion-icon name="add" routerLink="shop" routerDirection="forward"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <app-shops *ngFor="let shop of (eventShooping | async)" [shop]="shop" ></app-shops>
   <!-- *ngFor="let friend of (userList | async)" -->
 </ion-content>

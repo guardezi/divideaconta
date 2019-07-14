@@ -32,7 +32,7 @@ export class EventPage implements OnInit {
 
       this.event = this.eventDocument.valueChanges();
       this.eventFriends = this.eventFriendCollection.valueChanges();
-      // this.eventShooping = this.eventShoppingCollection.valueChanges();
+      this.eventShooping = this.eventShoppingCollection.valueChanges();
     });
   }
 
