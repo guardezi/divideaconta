@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { firebase } from '../environments/environment';
+import { FriendComponent } from './component/friend/friend.component';
+import { FriendComponentModule } from './component/friend/friend.component.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +23,8 @@ import { firebase } from '../environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FriendComponentModule
   ],
   providers: [
     StatusBar,

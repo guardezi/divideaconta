@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: './login/login.module#LoginPageModule' 
+    loadChildren: './login/login.module#LoginPageModule'
   },
   {
     path: 'cadastro',
@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'home/create',
     loadChildren: './home/create/create.module#CreatePageModule'
+  },
+  {
+    path: 'home/event/:id',
+    loadChildren: './home/event/event.module#EventPageModule'
   }
 ];
 

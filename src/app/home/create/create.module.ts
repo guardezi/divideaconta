@@ -23,6 +23,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CreatePage, FriendComponent]
+  declarations: [CreatePage]
 })
 export class CreatePageModule { }

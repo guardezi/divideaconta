@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p> event detaisl</p>
+  <p>
+    {{(event | async)?.eventName}}
+  </p>
+
+  <app-friend *ngFor="let friend of (eventFriends | async)" [friend]="friend">
+
+  </app-friend>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" routerLink="/home/create" routerDirection="forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- *ngFor="let friend of (userList | async)" -->
+</ion-content>

@@ -10,18 +10,18 @@
 </ion-header> -->
 
 <ion-content>
-    <ion-card class="welcome-card">
-    </ion-card>
+  <ion-card class="welcome-card">
+  </ion-card>
 
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Eventos:</ion-label>
-      </ion-list-header>
-      <ion-item *ngFor="let event of (userEvents | async)">
-          <ion-label>evento:</ion-label>
-        <ion-label>{{event.eventName}}</ion-label>
-      </ion-item>
-    </ion-list>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Eventos:</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let event of (userEvents | async)" [routerLink]="['event/',event.id]">
+      <ion-label>evento:</ion-label>
+      <ion-label>{{event.eventName}}</ion-label>
+    </ion-item>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
