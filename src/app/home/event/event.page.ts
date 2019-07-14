@@ -17,7 +17,7 @@ export class EventPage implements OnInit {
   private event: Observable<any>;
   private eventFriends: Observable<any[]>;
   private eventShooping: Observable<any[]>;
-  
+  private idEvent;
   constructor(
     private activetedRoute: ActivatedRoute,
     private afs: AngularFirestore,
@@ -25,8 +25,8 @@ export class EventPage implements OnInit {
 
   ngOnInit() {
     this.activetedRoute.params.subscribe(params => {
-      let id = params['id'];
-      this.eventDocument = this.afs.doc<any>(`events/${id}`);
+      this.idEvent = params['id'];
+      this.eventDocument = this.afs.doc<any>(`events/${this.idEvent}`);
       this.eventFriendCollection = this.eventDocument.collection('participants');
       this.eventShoppingCollection = this.eventDocument.collection('shopping');
 

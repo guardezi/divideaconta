@@ -5,13 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CreatePage } from './create.page';
+import { ShopPage } from './shop.page';
 import { FriendComponentModule } from 'src/app/component/friend/friend.component.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: CreatePage
+    component: ShopPage
   }
 ];
 
@@ -20,10 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule,
     FriendComponentModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CreatePage]
+  declarations: [ShopPage]
 })
-export class CreatePageModule { }
+export class ShopPageModule {}

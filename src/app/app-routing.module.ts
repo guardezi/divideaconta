@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'home/event/:id',
     loadChildren: './home/event/event.module#EventPageModule'
+  },
+  {
+    path: 'home/event/:id/shop',
+    loadChildren: './home/shop/shop.module#ShopPageModule'
   }
 ];
 
