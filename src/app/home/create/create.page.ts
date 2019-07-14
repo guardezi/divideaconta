@@ -72,6 +72,15 @@ export class CreatePage implements OnInit {
       const evn = { open: true, data: new Date(), ...data };
       this.eventCollection.add(evn)
         .then(ev => {
+          this.selectedFriends.forEach(friend => {
+            const participant = this.afs.doc(`events/${ev.id}/participants/${friend.id}`);
+            participant.set(friend);
+            const envDoc = this.afs.doc(`users/${friend.id}/events/${ev.id}`);
+            envDoc.set(evn);
+          });
+          const participant = this.afs.doc(`events/${ev.id}/participants/${this.userId}`);
+          participant.set({id:this.userId});
+
           const evnDoc = this.afs.doc(`users/${this.userId}/events/${ev.id}`);
           evnDoc.set(evn)
             .then(() => {
