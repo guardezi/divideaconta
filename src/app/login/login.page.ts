@@ -31,7 +31,11 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      size: 'normal',
+      theme: 'dark',
+      badge: 'inline'
+    });
   }
 
   ionViewDidLoad() {
@@ -60,6 +64,7 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.valid) {
       if (!this.enviouTelefone) {
+
         this.enviouTelefone = true;
         firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
         .then( confirmationResult => {
