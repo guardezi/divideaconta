@@ -15,6 +15,7 @@
     </ion-col>
   </ion-row>
 
+  <div id="recaptcha-container"></div>
 
   <form [formGroup]="loginForm" (ngSubmit)="login()">
 
@@ -33,10 +34,11 @@
     </ion-row>
 
     <!-- senha -->
-    <ion-row>
+    <ion-row *ngIf="enviouTelefone">
       <ion-col col-12>
         <ion-item>
-          <ion-input class="input-auth" type="password" placeholder="Informe a sua senha" formControlName="senha">
+          <ion-input class="input-auth" type="tel" placeholder="Codigo de confirmação!" formControlName="senha"
+          maxlength="6">
           </ion-input>
         </ion-item>
       </ion-col>
