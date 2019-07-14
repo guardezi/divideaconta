@@ -66,7 +66,7 @@ export class ShopPage implements OnInit {
           ...f
         });
         console.log(`${shoppRef.path}/split/${f.id}`);
-      })
+      });
 
 
 
