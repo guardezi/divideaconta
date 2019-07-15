@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginPageModule' 
   },
   {
-    path: 'cadastro',
-    loadChildren: './cadastro/cadastro.module#CadastroPageModule'
-  },
-  {
     path: 'home/create',
     loadChildren: './home/create/create.module#CreatePageModule'
   }
