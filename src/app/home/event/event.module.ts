@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CreatePage } from './create.page';
+import { EventPage } from './event.page';
 import { FriendComponentModule } from 'src/app/component/friend/friend.component.module';
+import { ShopComponentModule } from 'src/app/components/shops/shops.component.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: CreatePage
+    component: EventPage
   }
 ];
 
@@ -20,10 +21,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule,
+    RouterModule.forChild(routes),
     FriendComponentModule,
-    RouterModule.forChild(routes)
+    ShopComponentModule
   ],
-  declarations: [CreatePage]
+  declarations: [EventPage]
 })
-export class CreatePageModule { }
+export class EventPageModule {}

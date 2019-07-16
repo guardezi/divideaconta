@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="shopForm" (submit)="registerShop()">
+    <ion-item>
+      <ion-label position="floating">Nome do Item</ion-label>
+      <ion-input type="text" formControlName="itemName"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.itemName">
+        <div class="error-message"
+          *ngIf="shopForm.get('itemName').hasError(validation.type) && (shopForm.get('itemName').dirty || shopForm.get('itemName').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Preço do item</ion-label>
+      <ion-input type="tel" formControlName="itemPrice"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.itemPrice">
+        <div class="error-message"
+          *ngIf="shopForm.get('itemPrice').hasError(validation.type) && (shopForm.get('itemPrice').dirty || shopForm.get('itemPrice').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <p>amigos selecionados:</p>
+    <div>
+      <app-friend *ngFor="let friend of (selectedFriends)" [friend]="friend" (click)="removeFriendEvent(friend)">
+
+      </app-friend>
+    </div>
+
+
+    <ion-button type="submit" positive>adicionar</ion-button>
+  </form>
+
+
+
+  <div>
+    <app-friend *ngFor="let friend of (eventFriends | async)" [friend]="friend" (click)="addFriendShop(friend)">
+
+    </app-friend>
+  </div>
+
+
+</ion-content>

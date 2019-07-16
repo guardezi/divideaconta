@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user/user.service';
 
 
 @Component({
@@ -14,10 +15,13 @@ export class HomePage {
   private events: Observable<any[]>;
   private userEvents: Observable<any[]>;
 
-  private userId = '5511957925512';
+  private userId;
 
   constructor(
-    private afs: AngularFirestore) {
+    private afs: AngularFirestore,
+    private user: UserService
+  ) {
+    this.userId = this.user.loggedUser;
     this.userEventCollection = this.afs.collection<any>(`users/${this.userId}/events/`);
     this.userEvents = this.userEventCollection.snapshotChanges().pipe(
       map(actions => {

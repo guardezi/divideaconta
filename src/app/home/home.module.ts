@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { FriendComponent } from '../component/friend/friend.component';
 
 @NgModule({
   imports: [
