@@ -1,9 +1,11 @@
+import { UserService } from '../services/user/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { auth } from 'firebase/app';
 import { AlertController } from '@ionic/angular';
+
 
 import * as firebase from 'firebase/app';
 
@@ -25,7 +27,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private afAuth: AngularFireAuth,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private user: UserService
   ) {
     this.prepareForm();
   }
@@ -80,7 +83,9 @@ export class LoginPage implements OnInit {
       console.log('enviar codigo firebase', this.loginForm.value.senha);
       this.confirmation.confirm(this.loginForm.value.senha)
       .then(resultado => {
-        console.log(resultado.user);
+        this.user.loggedUser = resultado.user.phoneNumber.split('+').join('');
+        console.log(resultado.user.phoneNumber);
+        this.router.navigate(['home']);
       }).catch(e => {
         console.log('erro:', e);
       });

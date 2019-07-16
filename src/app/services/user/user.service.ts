@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  public loggedUser = '5511957925512';
+  public loggedUser;
 
   constructor() { }
 }
