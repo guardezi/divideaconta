@@ -16,6 +16,10 @@
   </ion-row>
 
 
+  <div style="margin-left: 1.5em" id="recaptcha-container"></div>
+
+
+
   <form [formGroup]="loginForm" (ngSubmit)="login()">
 
     <!-- Celular -->
@@ -33,10 +37,11 @@
     </ion-row>
 
     <!-- senha -->
-    <ion-row>
+    <ion-row *ngIf="enviouTelefone">
       <ion-col col-12>
         <ion-item>
-          <ion-input class="input-auth" type="password" placeholder="Informe a sua senha" formControlName="senha">
+          <ion-input class="input-auth" type="tel" placeholder="Codigo de confirmação!" formControlName="senha"
+            maxlength="6">
           </ion-input>
         </ion-item>
       </ion-col>
@@ -55,16 +60,6 @@
   </form>
 
 
-  <ion-row>
-    <ion-col col-12 text-center>
-
-      <ion-button color="light" size="small" fill="clear" (click)="cadastro()"
-        style="font-size: 1rem;">
-        Cadastrar
-      </ion-button>
-
-    </ion-col>
-  </ion-row>
 
 
 </ion-content>
