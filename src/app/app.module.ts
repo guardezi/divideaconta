@@ -12,8 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { firebase } from '../environments/environment';
-import { FriendComponent } from './component/friend/friend.component';
-import { FriendComponentModule } from './component/friend/friend.component.module';
+import { FriendComponentModule } from './components/friend/friend.component.module';
 import { ShopComponentModule } from './components/shops/shops.component.module';
 
 @NgModule({
