@@ -78,8 +78,9 @@ export class CreatePage implements OnInit {
             const envDoc = this.afs.doc(`users/${friend.id}/events/${ev.id}`);
             envDoc.set(evn);
           });
+
           const participant = this.afs.doc(`events/${ev.id}/participants/${this.userId}`);
-          participant.set({id:this.userId});
+          participant.set(this.user.userData);
 
           const evnDoc = this.afs.doc(`users/${this.userId}/events/${ev.id}`);
           evnDoc.set(evn)

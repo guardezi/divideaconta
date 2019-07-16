@@ -23,6 +23,7 @@ export class LoginPage implements OnInit {
   public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
   confirmation: firebase.auth.ConfirmationResult;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -31,6 +32,12 @@ export class LoginPage implements OnInit {
     private user: UserService
   ) {
     this.prepareForm();
+    afAuth.user.subscribe(data => {
+      if (data && data.phoneNumber) {
+        this.user.loggedUser = data.phoneNumber.split('+').join('');
+        this.router.navigate(['home']);
+      }
+    });
   }
 
   ngOnInit() {
@@ -62,7 +69,7 @@ export class LoginPage implements OnInit {
 
     const appVerifier = this.recaptchaVerifier;
     const phoneNumber =
-    '+55' +  this.loginForm.value.cel.split('(').join('').split(')').join('').split('-').join('').split(' ').join('');
+      '+55' + this.loginForm.value.cel.split('(').join('').split(')').join('').split('-').join('').split(' ').join('');
 
 
     if (this.loginForm.valid) {
@@ -70,28 +77,28 @@ export class LoginPage implements OnInit {
 
         this.enviouTelefone = true;
         firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-        .then( confirmationResult => {
-          console.log('sms sent', confirmationResult);
-          // SMS sent. Prompt user to type the code from the message, then sign the
-          // user in with confirmationResult.confirm(code).
-          this.confirmation = confirmationResult;
-      })
-      .catch((error) => {
-        console.error('SMS not sent', error);
-      });
-    } else {
-      console.log('enviar codigo firebase', this.loginForm.value.senha);
-      this.confirmation.confirm(this.loginForm.value.senha)
-      .then(resultado => {
-        this.user.loggedUser = resultado.user.phoneNumber.split('+').join('');
-        console.log(resultado.user.phoneNumber);
-        this.router.navigate(['home']);
-      }).catch(e => {
-        console.log('erro:', e);
-      });
+          .then(confirmationResult => {
+            console.log('sms sent', confirmationResult);
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            this.confirmation = confirmationResult;
+          })
+          .catch((error) => {
+            console.error('SMS not sent', error);
+          });
+      } else {
+        console.log('enviar codigo firebase', this.loginForm.value.senha);
+        this.confirmation.confirm(this.loginForm.value.senha)
+          .then(resultado => {
+            this.user.loggedUser = resultado.user.phoneNumber.split('+').join('');
+            console.log(resultado.user.phoneNumber);
+            this.router.navigate(['home']);
+          }).catch(e => {
+            console.log('erro:', e);
+          });
+      }
     }
   }
-}
 
   cadastro() {
     this.router.navigate(['cadastro']);

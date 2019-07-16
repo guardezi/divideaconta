@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CreatePage } from './create.page';
-import { FriendComponentModule } from 'src/app/component/friend/friend.component.module';
+import { FriendComponentModule } from 'src/app/components/friend/friend.component.module';
 
 const routes: Routes = [
   {
