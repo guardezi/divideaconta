@@ -1,8 +1,13 @@
 import { FriendComponent } from './friend.component';
 import { NgModule } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-    imports: [],
+    imports: [
+        CommonModule,
+        IonicModule,
+    ],
     exports: [FriendComponent],
     declarations: [FriendComponent],
     providers: [],

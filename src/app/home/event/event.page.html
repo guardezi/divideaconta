@@ -8,20 +8,22 @@
 </ion-header>
 
 <ion-content>
-  <p> event detaisl</p>
+  <h2>Evento:</h2>
   <p>
     {{(event | async)?.eventName}}
   </p>
 
-  <app-friend *ngFor="let friend of (eventFriends | async)" [friend]="friend">
+  <h2>Pessoas:</h2>
+  <app-friend *ngFor="let friend of (eventFriends | async)" [friend]="friend" [eventId]="idEvent">
 
   </app-friend>
+
+  <h2>Compras:</h2>
+  <app-shops *ngFor="let shop of (eventShooping | async)" [shop]="shop"></app-shops>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add" routerLink="shop" routerDirection="forward"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-  <app-shops *ngFor="let shop of (eventShooping | async)" [shop]="shop" ></app-shops>
-  <!-- *ngFor="let friend of (userList | async)" -->
 </ion-content>

@@ -57,20 +57,27 @@ export class ShopPage implements OnInit {
     if (this.shopForm.valid && this.selectedFriends.length) {
       const pricePerFriend = 1 / this.selectedFriends.length;
       const item = this.shopForm.value;
-      const shoppRef = await this.eventShoppingCollection.add(item)
+      const shoppRef = await this.eventShoppingCollection.add(item);
       console.log(shoppRef.path);
-      this.selectedFriends.map(async (f) => {
-        this.afs.doc(`${shoppRef.path}/split/${f.id}`).set({
+      await this.selectedFriends.map(async (f) => {
+        await this.afs.doc(`${shoppRef.path}/split/${f.id}`).set({
+          fare: pricePerFriend,
+          part: item.itemPrice * pricePerFriend,
+          ...f
+        });
+        await this.afs.doc(`events/${this.idEvent}/participants/${f.id}/shops/${shoppRef.id}`).set({
           fare: pricePerFriend,
           part: item.itemPrice * pricePerFriend,
           ...f
         });
       });
+      this.goBack();
 
 
     }
 
   }
+
 
   addFriendShop(friend) {
     if (this.selectedFriends.indexOf(friend) < 0) {
@@ -78,4 +85,7 @@ export class ShopPage implements OnInit {
     }
   }
 
+  goBack() {
+    this.router.navigateByUrl('/home/event/' + this.idEvent);
+  }
 }

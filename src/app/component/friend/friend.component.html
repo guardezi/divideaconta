@@ -1,5 +1,12 @@
-
-<p>
-  Nome: {{friend.name}}
-  Fone: {{friend.phone}}
-</p>
+<ion-card>
+    <ion-card-header>
+      
+      <ion-card-title>{{friend.name}}</ion-card-title>
+      <ion-card-subtitle>{{friend.phone}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content *ngIf="eventId">
+      Total em compras: R$ {{total}}
+    </ion-card-content>
+  </ion-card>
+  
